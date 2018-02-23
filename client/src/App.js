@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Auth from './auth/auth';
 
 class App extends Component {
+  componentDidMount(){
+    const auth = new Auth();
+    auth.login();
+  }
   render() {
     return (
       <div className="App">
