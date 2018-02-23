@@ -16,7 +16,7 @@ exports.create = function(req, res) {
 exports.findAll = function(req, res) {
   Session.find(function(err, sessions) {
     if (err) {
-      res.status(500).send({ message: "Session retrieval error" });
+      res.status(500).send({ message: "Sessions retrieval error" });
     } else {
       res.send(sessions);
     }
@@ -24,13 +24,37 @@ exports.findAll = function(req, res) {
 };
 
 exports.findOne = function(req, res) {
-  // Find a single note with a noteId
+  Session.findById(req.params.sessionId, function(err, session) {
+    if (err) {
+      res.status(500).send({ message: "Session retrieval error" });
+    } else {
+      res.send(session);
+    }
+  });
 };
 
 exports.update = function(req, res) {
-  // Update a note identified by the noteId in the request
+  Session.findById(req.params.sessionId, function(err, session) {
+    if (err) {
+      res.status(500).send({ message: "Session not found" });
+    }
+    session.key = req.body.key;
+    session.save(function(err, data) {
+      if (err) {
+        res.status(500).send({ message: "Session update error" });
+      } else {
+        res.send(data);
+      }
+    });
+  });
 };
 
 exports.delete = function(req, res) {
-  // Delete a note with the specified noteId in the request
+    Session.remove({_id: req.params.sessionId}, function(err, data) {
+        if(err) {
+            res.status(500).send({message: "Session deletion error" + req.params.id});
+        } else {
+            res.send({message: "Session deleted"})
+        }
+    });
 };
