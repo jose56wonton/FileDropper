@@ -1,18 +1,18 @@
+const fs = require("fs");
 exports.create = function(req, res) {
   if (!req.params.sessionId) {
     res.status(400).send({ message: "Need a valid key for your session" });
   }
-  // TODO: Need to validate that this session key is real
-
   if (!req.files) return res.status(400).send("No files were uploaded.");
-
-  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-  let sampleFile = req.files.sampleFile;
-
-  // Use the mv() method to place the file somewhere on your server
-  sampleFile.mv(`../saves/${req.params.sessionId}/`, function(err) {
+  // Gets the file object of the req
+  let file = req.files.file;
+  // Create dir if doesn't already exist
+  if (!fs.existsSync(`saves/${req.params.sessionId}`)) {
+    fs.mkdirSync(`saves/${req.params.sessionId}`);
+  }
+  // Moves files onto the saves/sessionId/ folder
+  file.mv(`saves/${req.params.sessionId}/${req.files.file.name}`, function(err) {
     if (err) return res.status(500).send(err);
-
     res.send("File uploaded!");
   });
 };
