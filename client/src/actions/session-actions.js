@@ -1,6 +1,16 @@
 import * as types from "./types";
-export function toggleAlert(){
+
+
+
+export const getSession = (sessionTag) => {
+  
   return{
-  type: types.TOGGLE_ALERT
+  type: types.GET_SESSION_REQUEST
   }
+}
+
+export const postSession = (sessionTag) => {
+  return{
+    type: types.GET_SESSION_REQUEST
+    }
 }
