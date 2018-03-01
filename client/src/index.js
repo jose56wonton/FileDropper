@@ -6,6 +6,10 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
+// Styles
+import "./styles/styles.css";
+
+// Components
 import rootReducer from './reducers/index';
 import SigninContainer from "./containers/signin-container";
 
