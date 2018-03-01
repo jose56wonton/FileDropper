@@ -6,11 +6,11 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
-import * as reducers from './reducers';
+import rootReducer from './reducers/index';
 import SigninContainer from "./containers/signin-container";
 
 const store = createStore(
-  reducers,
+  rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
 
