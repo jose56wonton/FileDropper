@@ -1,3 +1,16 @@
+export const LOGIN_USER_REQUEST = "login_user_request";
+export const LOGIN_USER_SUCCESS = "login_user_success";
+export const LOGIN_USER_FAILURE = "login_user_failure";
+
+export const LOGOUT_USER_REQUEST = "logout_user_request";
+export const LOGOUT_USER_SUCCESS = "logout_user_success";
+export const LOGOUT_USER_FAILURE = "logout_user_failure"; 
+
+export const SIGNUP_USER_REQUEST = "signup_user_request";
+export const SIGNUP_USER_SUCCESS = "signup_user_success";
+export const SIGNUP_USER_FAILURE = "signup_user_failure"; 
+
+
 // Session actions
 export const GET_SESSION_REQUEST = "get_session_request";
 export const GET_SESSION_SUCCESS = "get_session_success";

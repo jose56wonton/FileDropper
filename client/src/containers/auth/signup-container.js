@@ -13,11 +13,11 @@ class SignUpContainer extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.password1.value, this.password2.value);
-    if (this.password1.value === this.password2.value) {
+    
+    if (this.password1.value === this.password2.value) {      
       auth(this.email.value, this.password2.value)
-        .then(asdf => {
-          console.log("sign'd up");
+        .then(data => {
+          console.log(asdf);
         })
         .catch(e => this.setState(setErrorMsg(e)));
     }else{
