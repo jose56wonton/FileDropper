@@ -1,23 +1,24 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import AuthComponent from "../components/auth-component";
 import * as actions from "../actions";
 class AuthContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      formType: 1
+      formType: true
     };
   }
   setFormSignIn = () => {
     this.setState({
-      formType: 1
+      formType: true
     });
+    this.forceUpdate();
   };
   setFormSignUp = () => {
     this.setState({
-      formType: 0
+      formType: false
     });
+    this.forceUpdate();
   };
   render() {
     return (
@@ -30,10 +31,6 @@ class AuthContainer extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    session: state.session
-  };
-};
 
-export default connect(mapStateToProps, actions)(AuthContainer);
+
+export default AuthContainer;
