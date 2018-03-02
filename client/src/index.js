@@ -1,30 +1,26 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './app';
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
-// Styles
 import "./styles/styles.css";
 
 // Components
 import rootReducer from './reducers/index';
-import SigninContainer from "./containers/signin-container";
+
 
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
 
+
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" component={SigninContainer} />
-      </Switch>
-    </BrowserRouter>
+   <App />
   </Provider>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
