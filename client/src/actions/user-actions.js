@@ -45,3 +45,17 @@ export const signup = (email,password)=>{
     )
   }
 }
+export const reset = (email) => {
+  const userRequest = auth.resetPassword(email);
+  return(dispatch) =>{
+    dispatch({type: types.RESET_USER_REQUEST});
+    return userRequest.then(
+      response => {
+        dispatch({type: types.RESET_USER_SUCCESS, payload: response, email: email})
+      },
+      error => {
+        dispatch({type: types.RESET_USER_FAILURE, payload: error, email: email})
+      }
+    )
+  }
+}

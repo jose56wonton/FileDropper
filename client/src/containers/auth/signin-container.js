@@ -1,29 +1,21 @@
 import React, { Component } from "react";
 import { login, resetPassword } from "../../helpers/auth";
-
-function setErrorMsg(error) {
-  return {
-    loginMessage: error
-  };
-}
+import * as actions from '../../actions';
+import {connect} from 'react-redux';
 class SignInContainer extends Component {
-  state = { loginMessage: null };
   handleSubmit = e => {
     e.preventDefault();
-    login(this.email.value, this.password.value).then(asdf =>{
-      console.log("asdf")
-    }).catch(error => {
-      this.setState(setErrorMsg("Invalid username/password."));
-    });
+    this.props.login(this.email.value,this.password.value);
   };
-  resetPassword = () => {
-    resetPassword(this.email.value)
-      .then(() =>
-        this.setState(
-          setErrorMsg(`Password reset email sent to ${this.email.value}.`)
-        )
-      )
-      .catch(error => this.setState(setErrorMsg(`Email address not found.`)));
+  reset = () => {
+    this.props.reset(this.email.value);
+    // resetPassword(this.email.value)
+    //   .then(() =>
+    //     this.setState(
+    //       setErrorMsg(`Password reset email sent to ${this.email.value}.`)
+    //     )
+    //   )
+    //   .catch(error => this.setState(setErrorMsg(`Email address not found.`)));
   };
   render() {
     return (
@@ -44,14 +36,12 @@ class SignInContainer extends Component {
             placeholder="*******"
             ref={(password)=> this.password = password}
           />
-          {
-            this.state.loginMessage &&
-            <div className="alert alert-danger" role="alert">
-              <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-              <span className="sr-only">Error:</span>
-              &nbsp;{this.state.loginMessage} <a href="#" onClick={this.resetPassword} className="alert-link">Forgot Password?</a>
-            </div>
-          }
+          <p>{this.props.user.status}</p>
+          <div className="alert alert-danger" role="alert">
+          <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <span className="sr-only">{this.props.user.statusMsg}</span>
+          &nbsp; <a href="#" onClick={this.reset} className="alert-link">Forgot Password?</a>
+        </div>
           <input className="button-primary" type="submit" value="Submit" />
         </form>
       </div>
@@ -59,4 +49,23 @@ class SignInContainer extends Component {
   }
 }
 
-export default SignInContainer;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps,actions)(SignInContainer);
+
+
+/*
+ {
+            this.state.loginMessage &&
+            <div className="alert alert-danger" role="alert">
+              <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+              <span className="sr-only">Error:</span>
+              &nbsp;{this.state.loginMessage} <a href="#" onClick={this.resetPassword} className="alert-link">Forgot Password?</a>
+            </div>
+          }
+
+          */

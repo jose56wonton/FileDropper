@@ -17,7 +17,7 @@ class SignUpContainer extends Component {
     if (this.password1.value === this.password2.value) {      
       auth(this.email.value, this.password2.value)
         .then(data => {
-          console.log(asdf);
+          console.log("asdf");
         })
         .catch(e => this.setState(setErrorMsg(e)));
     }else{

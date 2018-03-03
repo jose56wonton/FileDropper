@@ -10,6 +10,10 @@ export const SIGNUP_USER_REQUEST = "signup_user_request";
 export const SIGNUP_USER_SUCCESS = "signup_user_success";
 export const SIGNUP_USER_FAILURE = "signup_user_failure"; 
 
+export const RESET_USER_REQUEST = "reset_user_request";
+export const RESET_USER_SUCCESS = "reset_user_success";
+export const RESET_USER_FAILURE = "reset_user_failure"; 
+
 
 // Session actions
 export const GET_SESSION_REQUEST = "get_session_request";
