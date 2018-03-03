@@ -2,49 +2,39 @@ import React, { Component } from "react";
 import { login, resetPassword } from "../../helpers/auth";
 import * as actions from "../../actions";
 import { connect } from "react-redux";
+import SignInComponent from "../../components/auth/signin-component";
 class SignInContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: ""
+    };
+  }
   handleSubmit = e => {
     e.preventDefault();
-    this.props.login(this.email.value, this.password.value);
+    this.props.login(this.state.email, this.state.password);
   };
   reset = () => {
     this.props.reset(this.email.value);
   };
+  changeEmail = e => {
+    this.setState({ email: e.target.value });
+  };
+  changePassword = e => {
+    this.setState({ password: e.target.value });
+  };
   render() {
     return (
-      <div>
-        <h5>Sign In</h5>
-        <form onSubmit={this.handleSubmit}>
-          <label>Email</label>
-          <input
-            className="u-full-width"
-            type="email"
-            placeholder="asdf@gmail.com"
-            ref={email => (this.email = email)}
-          />
-          <label>Password</label>
-          <input
-            className="u-full-width"
-            type="password"
-            placeholder="*******"
-            ref={password => (this.password = password)}
-          />
-          {this.props.user.statusMsg &&
-            <div className="alert alert-danger" role="alert">
-            <span
-              className="glyphicon glyphicon-exclamation-sign"
-              aria-hidden="true"
-            />
-            <span className="sr-only">{this.props.user.statusMsg}</span>
-            &nbsp;{" "}
-            <a href="#" onClick={this.reset} className="alert-link">
-            Forgot Password?
-          </a>
-          </div>}
-         
-          <input className="button-primary" type="submit" value="Submit" />
-        </form>
-      </div>
+      <SignInComponent
+        handleSubmit={this.handleSubmit}
+        reset={this.reset}
+        status={this.props.user.statusMsg}
+        email={this.state.email}
+        password={this.state.password}
+        handleEmailChange={this.changeEmail}
+        handlePasswordChange={this.changePassword}
+      />
     );
   }
 }
