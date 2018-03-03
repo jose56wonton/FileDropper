@@ -2,51 +2,43 @@ import React, { Component } from "react";
 import { auth } from "../../helpers/auth";
 import * as actions from "../../actions";
 import { connect } from "react-redux";
+import SignUpComponent from '../../components/auth/signup-component';
 
 class SignUpContainer extends Component {
-
+  constructor(props){
+    super(props);
+    this.state = {
+      email: "",
+      password1: "",
+      password2: ""
+    }
+  }
   handleSubmit = e => {
     e.preventDefault();
-    this.props.signup(this.email.value,this.password1.value,this.password2.value);  
+    this.props.signup(this.state.email,this.state.password1,this.state.password2);  
   };
+  changeEmail = (e) => {
+    this.setState({email:e.target.value});
+  }
+  changePassword1 = (e) => {
+    this.setState({password1:e.target.value});
+  }
+  changePassword2 = (e) => {
+    this.setState({password2:e.target.value});
+  }
   render() {
     return (
-      <div>
-        <h5>Sign Up</h5>
-        <form onSubmit={this.handleSubmit}>
-          <label>Email</label>
-          <input
-            className="u-full-width"
-            type="email"
-            placeholder="asdf@gmail.com"
-            ref={email => (this.email = email)}
-          />
-          <label>Password</label>
-          <input
-            className="u-full-width"
-            type="password"
-            placeholder="*******"
-            ref={password1 => (this.password1 = password1)}
-          /> 
-          <label>Password (Repeat)</label>
-          <input
-            className="u-full-width"
-            type="password"
-            placeholder="*******"
-            ref={password2 => (this.password2 = password2)}
-          />         
-          {this.props.user.statusMsg &&
-            <div className="alert alert-danger" role="alert">
-            <span
-              className="glyphicon glyphicon-exclamation-sign"
-              aria-hidden="true"
-            />
-            <span className="sr-only">{this.props.user.statusMsg}</span>
-            &nbsp;{" "}            
-          </div>}
-          <input className="button-primary" type="submit" value="Submit" />
-        </form>
-      </div>
+      <SignUpComponent 
+        handleSubmit={this.handleSubmit}
+        status={this.props.user.statusMsg}
+        email={this.state.email}
+        password1={this.state.password1}
+        password2={this.state.password2}
+        handleEmailChange={this.changeEmail} 
+        handlePassword1Change={this.changePassword1}
+        handlePassword2Change={this.changePassword2}
+      
+      />
     );
   }
 }
