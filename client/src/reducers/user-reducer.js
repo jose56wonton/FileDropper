@@ -17,12 +17,13 @@ export const userReducer = (state = initialState, action) => {
       return {
         value: action.payload,
         status: status.SUCCESS,
-        statusMsg: "Log in Success!"
+        statusMsg: ""
       };
     case actions.LOGIN_USER_FAILURE:
       return {
         status: status.ERROR,
-        statusMsg: "Log in Error!"
+        value: action.payload,
+        statusMsg: action.payload.message
       };
 
     case actions.LOGOUT_USER_REQUEST:
@@ -34,12 +35,13 @@ export const userReducer = (state = initialState, action) => {
       return {
         value: action.payload,
         status: status.SUCCESS,
-        statusMsg: "Log Out Success!"
+        statusMsg: ""
       };
     case actions.LOGOUT_USER_FAILURE:
       return {
         status: status.ERROR,
-        statusMsg: "Log Out Error!"
+        value: action.payload,
+        statusMsg: action.payload.message
       };
     case actions.SIGNUP_USER_REQUEST:
       return {
@@ -50,17 +52,20 @@ export const userReducer = (state = initialState, action) => {
       return {
         value: action.payload,
         status: status.SUCCESS,
-        statusMsg: "Sign Up Success!"
+        statusMsg: ""
       };
     case actions.SIGNUP_USER_FAILURE:
+      console.log(action.payload);
       return {
         status: status.ERROR,
-        statusMsg: "Sign Up Error!"
+        value: action.payload,
+        statusMsg: action.payload.message
       };
     case actions.PASSWORD_MATCH_ERROR:
       return {
         status: status.ERROR,
-        statusMsg: "Passwords must match!"
+        value: action.payload,
+        statusMsg: "Passwords do not match."
       }
     case actions.RESET_USER_REQUEST:
       return {
@@ -76,6 +81,7 @@ export const userReducer = (state = initialState, action) => {
     case actions.RESET_USER_FAILURE:
       return {
         status: status.ERROR,
+        value: action.payload,
         statusMsg: `Password reset email could not be sent. ${action.email}! is not valid`
       };
     default:
