@@ -57,6 +57,11 @@ export const userReducer = (state = initialState, action) => {
         status: status.ERROR,
         statusMsg: "Sign Up Error!"
       };
+    case actions.PASSWORD_MATCH_ERROR:
+      return {
+        status: status.ERROR,
+        statusMsg: "Passwords must match!"
+      }
     case actions.RESET_USER_REQUEST:
       return {
         status: status.LOADING,

@@ -1,28 +1,13 @@
 import React, { Component } from "react";
 import { auth } from "../../helpers/auth";
-function setErrorMsg(error) {
-  return {
-    registerError: error.message
-  };
-}
+import * as actions from "../../actions";
+import { connect } from "react-redux";
 
 class SignUpContainer extends Component {
-  state = {
-    registerError: null,
-    error: ""
-  };
+
   handleSubmit = e => {
     e.preventDefault();
-    
-    if (this.password1.value === this.password2.value) {      
-      auth(this.email.value, this.password2.value)
-        .then(data => {
-          console.log("asdf");
-        })
-        .catch(e => this.setState(setErrorMsg(e)));
-    }else{
-      this.setState(setErrorMsg("Passwords do not match"))
-    }
+    this.props.signup(this.email.value,this.password1.value,this.password2.value);  
   };
   render() {
     return (
@@ -42,27 +27,32 @@ class SignUpContainer extends Component {
             type="password"
             placeholder="*******"
             ref={password1 => (this.password1 = password1)}
-          />
+          /> 
           <label>Password (Repeat)</label>
           <input
             className="u-full-width"
             type="password"
             placeholder="*******"
             ref={password2 => (this.password2 = password2)}
-          />
-          {
-            this.state.registerError &&
+          />         
+          {this.props.user.statusMsg &&
             <div className="alert alert-danger" role="alert">
-              <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-              <span className="sr-only">Error:</span>
-              &nbsp;{this.state.registerError}
-            </div>
-          }
+            <span
+              className="glyphicon glyphicon-exclamation-sign"
+              aria-hidden="true"
+            />
+            <span className="sr-only">{this.props.user.statusMsg}</span>
+            &nbsp;{" "}            
+          </div>}
           <input className="button-primary" type="submit" value="Submit" />
         </form>
       </div>
     );
   }
 }
-
-export default SignUpContainer;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    user: state.user
+  };
+};
+export default connect(mapStateToProps,actions)(SignUpContainer);
