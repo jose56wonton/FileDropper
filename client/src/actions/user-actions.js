@@ -72,3 +72,9 @@ export const reset = email => {
     );
   };
 };
+
+export const resetMsg = () => {
+  return dispatch => {
+    dispatch({type: types.RESET_MSG})
+  }
+}

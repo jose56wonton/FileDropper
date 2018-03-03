@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AuthComponent from "../components/auth-component";
 import * as actions from "../actions";
+import {connect} from 'react-redux';
 class AuthContainer extends Component {
   constructor(props) {
     super(props);
@@ -12,12 +13,14 @@ class AuthContainer extends Component {
     this.setState({
       formType: true
     });
+    this.props.resetMsg();
     this.forceUpdate();
   };
   setFormSignUp = () => {
     this.setState({
       formType: false
     });
+    this.props.resetMsg();
     this.forceUpdate();
   };
   render() {
@@ -33,4 +36,4 @@ class AuthContainer extends Component {
 
 
 
-export default AuthContainer;
+export default connect(null,actions)(AuthContainer);

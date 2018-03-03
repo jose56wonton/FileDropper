@@ -15,6 +15,7 @@ export const RESET_USER_REQUEST = "reset_user_request";
 export const RESET_USER_SUCCESS = "reset_user_success";
 export const RESET_USER_FAILURE = "reset_user_failure"; 
 
+export const RESET_MSG = "reset_msg";
 
 // Session actions
 export const GET_SESSION_REQUEST = "get_session_request";

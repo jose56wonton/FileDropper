@@ -84,6 +84,10 @@ export const userReducer = (state = initialState, action) => {
         value: action.payload,
         statusMsg: `Password reset email could not be sent. ${action.email}! is not valid`
       };
+    case actions.RESET_MSG:
+      return {
+        statusMsg: ""
+      }
     default:
       return state;
   }
