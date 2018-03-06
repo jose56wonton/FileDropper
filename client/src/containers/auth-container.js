@@ -2,12 +2,26 @@ import React, { Component } from "react";
 import AuthComponent from "../components/auth-component";
 import * as actions from "../actions";
 import {connect} from 'react-redux';
+import Cookies from 'universal-cookie';
+import * as cookieNames from './auth/auth-cookies';
+import { withRouter } from "react-router";
 class AuthContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       formType: true
     };
+  }
+  componentDidMount = () => { 
+    // Take this out in the future
+    const cookies = new Cookies();
+    const email = cookies.get(cookieNames.EMAIL);
+    const password = cookies.get(cookieNames.PASSWORD);
+    if(email && password){
+      this.props.login(email,password).then(()=>{
+        this.props.history.push(`/${this.props.user.value.email.split("@")[0]}`);
+      })
+    }
   }
   setFormSignIn = () => {
     this.setState({
@@ -35,5 +49,11 @@ class AuthContainer extends Component {
 }
 
 
+const mapStateToProps = (state, ownProps) => {
+  return {
+    user: state.user
+  };
+};
 
-export default connect(null,actions)(AuthContainer);
+
+export default connect(mapStateToProps,actions)(withRouter(AuthContainer));

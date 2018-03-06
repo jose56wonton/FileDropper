@@ -5,69 +5,48 @@ import AuthContainer from "./containers/auth-container";
 import UserContainer from "./containers/user-container";
 
 import { firebaseAuth } from "./helpers/fire";
-// Styles
-
-function PrivateRoute({ component: Component, authed, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        authed === true
-          ? <Component {...props} />
-          : <Redirect
-              to={{ pathname: "/", state: { from: props.location } }}
-            />}
-    />
-  );
-}
-
-function PublicRoute({ component: Component, authed, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        authed === false ? <Component {...props} /> : <Redirect to="/" />}
-    />
-  );
-}
+import Cookies from "universal-cookie";
+import * as cookieNames from "./containers/auth/auth-cookies";
+import { connect } from "react-redux";
+import * as actions from "./actions";
+import * as status from "./reducers/status";
 
 class App extends Component {
-  state = {
-    authed: false,
-    loading: true
-  };
-  componentDidMount() {
-    this.removeListener = firebaseAuth().onAuthStateChanged(user => {
-      if (user) {
-        this.setState({
-          authed: true,
-          loading: false
-        });
-      } else {
-        this.setState({
-          authed: false,
-          loading: false
-        });
-      }
-    });
-  }
-  componentWillUnmount() {
-    this.removeListener();
-  }
   render() {
+    console.log(this.props.user.status);
     return (
       <BrowserRouter>
         <Switch>
+          <Route path="/auth" component={AuthContainer} />
           <PrivateRoute
-            authed={this.state.authed}
-            path="/:session"
+            user={this.props.user}
+            path="/:user"
             component={UserContainer}
           />
-          <Route path="/" component={AuthContainer} />
+          <Route path="/" exact component={AuthContainer} />
         </Switch>
       </BrowserRouter>
     );
   }
 }
+const mapStateToProps = (state, ownProps) => {
+  return {
+    user: state.user
+  };
+};
 
-export default App;
+export default connect(mapStateToProps, actions)(App);
+
+function PrivateRoute({ component: Component, user, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        user.status === status.SUCCESS
+          ? <Component {...props} />
+          : <Redirect
+              to={{ pathname: "/auth", state: { from: props.location } }}
+            />}
+    />
+  );
+}

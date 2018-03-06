@@ -3,7 +3,7 @@ import { auth } from "../../helpers/auth";
 import * as actions from "../../actions";
 import { connect } from "react-redux";
 import SignUpComponent from '../../components/auth/signup-component';
-
+import { withRouter } from "react-router";
 class SignUpContainer extends Component {
   constructor(props){
     super(props);
@@ -14,8 +14,10 @@ class SignUpContainer extends Component {
     }
   }
   handleSubmit = e => {
-    e.preventDefault();
-    this.props.signup(this.state.email,this.state.password1,this.state.password2);  
+    // e.preventDefault();
+    // this.props.signup(this.state.email,this.state.password1,this.state.password2).then(()=>{      
+    //   this.props.history.push(`/${this.props.user.value.uid}`);
+    // });;  
   };
   changeEmail = (e) => {
     this.setState({email:e.target.value});
@@ -36,8 +38,7 @@ class SignUpContainer extends Component {
         password2={this.state.password2}
         handleEmailChange={this.changeEmail} 
         handlePassword1Change={this.changePassword1}
-        handlePassword2Change={this.changePassword2}
-      
+        handlePassword2Change={this.changePassword2}      
       />
     );
   }
@@ -47,4 +48,4 @@ const mapStateToProps = (state, ownProps) => {
     user: state.user
   };
 };
-export default connect(mapStateToProps,actions)(SignUpContainer);
+export default connect(mapStateToProps,actions)(withRouter(SignUpContainer));
