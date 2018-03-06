@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import { login, resetPassword } from "../../helpers/auth";
-import * as actions from "../../actions";
 import { connect } from "react-redux";
-import SignInComponent from "../../components/auth/signin-component";
 import Cookies from "universal-cookie";
-import * as cookieNames from "../../constants/cookie-constants";
 import { withRouter } from "react-router";
+
+
+import SignInComponent from "../../components/auth/signin-component";
+import * as cookieNames from "../../constants/cookie-constants";
+import * as actions from "../../actions";
+
 class SignInContainer extends Component {
   constructor(props) {
     super(props);

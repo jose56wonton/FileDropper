@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { auth } from "../../helpers/auth";
-import * as actions from "../../actions";
-import { connect } from "react-redux";
-import SignUpComponent from "../../components/auth/signup-component";
-import { withRouter } from "react-router";
 import Cookies from "universal-cookie";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+
+import * as actions from "../../actions";
+import SignUpComponent from "../../components/auth/signup-component";
 import * as cookieNames from "../../constants/cookie-constants";
+
 class SignUpContainer extends Component {
   constructor(props) {
     super(props);

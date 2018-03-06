@@ -1,20 +1,12 @@
 import React, { Component } from "react";
-import * as actions from "../../actions";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+
 import NavComponent from '../../components/general/nav-component';
+import * as actions from "../../actions";
+
 class NavContainer extends Component {
-  constructor(props) {
-    super(props);
-    
-   
-    
-    
-    // nav states are 
-    // 0 - home 
-    // 1 - auth
-    // 2 - user
-  }
+ 
   home = () => {
     this.props.history.push(
       `/`
