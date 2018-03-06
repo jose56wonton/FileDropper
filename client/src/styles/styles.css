@@ -1,5 +1,5 @@
-@import url(./skeleton.css);
-.center {
+@import url(../../node_modules/semantic-ui-css/semantic.min.css);
+center {
   text-align: center; }
 
 .hero {
