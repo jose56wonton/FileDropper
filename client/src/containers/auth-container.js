@@ -15,16 +15,16 @@ class AuthContainer extends Component {
   }
   componentDidMount = () => {
     // Take this out in the future
-    const cookies = new Cookies();
-    const email = cookies.get(cookieNames.EMAIL);
-    const password = cookies.get(cookieNames.PASSWORD);
-    if (email && password) {
-      this.props.login(email, password).then(() => {
-        this.props.history.push(
-          `/${this.props.user.value.email.split("@")[0]}`
-        );
-      });
-    }
+    // const cookies = new Cookies();
+    // const email = cookies.get(cookieNames.EMAIL);
+    // const password = cookies.get(cookieNames.PASSWORD);
+    // if (email && password) {
+    //   this.props.login(email, password).then(() => {
+    //     this.props.history.push(
+    //       `/${this.props.user.value.email.split("@")[0]}`
+    //     );
+    //   });
+    // }
   };
   setFormSignIn = () => {
     this.setState({

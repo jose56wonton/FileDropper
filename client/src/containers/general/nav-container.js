@@ -10,39 +10,51 @@ class NavContainer extends Component {
     };
   }
   home = () => {
-    
-  }
+    this.props.history.push(
+      `/`
+    );
+  };
   logout = () => {
+    this.props.logout();
+    this.props.history.push(
+      `/auth`
+    );
     
-  }
+  };
   login = () => {
-    
-  }
+    this.props.history.push(
+      `/auth`
+    );
+  };
   user = () => {
-    
-  }
+    this.props.history.push(
+      `/${this.props.user.value.email.split("@")[0]}`
+    );
+  };
   render() {
     const auth = this.props.user.value;
-    let right = null ;
-    if(this.props.user.value){
-      right = <div className="right menu">
-      <a className="ui item">Logout</a>
-      <a className="item"><i className="user icon" /></a>
-    </div>
-    }
-    else{
-      right = <div className="right menu">
-       <a className="ui item">Login</a>}
-    </div>
+    let right = null;
+    if (this.props.user.value && this.props.user.value.email) {
+      right = (
+        <div className="right menu">
+          <a onClick={this.logout} className="ui item">Logout</a>
+          <a onClick={this.user} className="item">
+            <i className="user icon" />
+          </a>
+        </div>
+      );
+    } else {
+      right = (
+        <div className="right menu">
+          <a onClick={this.login} className="ui item">Login</a>}
+        </div>
+      );
     }
     return (
       <div className="container">
         <div className="ui secondary pointing menu">
-          <a className="active item">Home</a>
-         
+          <a onClick={this.home} className="item">Home</a>
           {right}
-          
-          
         </div>
       </div>
     );
@@ -55,5 +67,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-
-export default connect(mapStateToProps, actions)(withRouter(NavContainer)) ;
+export default connect(mapStateToProps, actions)(withRouter(NavContainer));

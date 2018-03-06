@@ -10,7 +10,7 @@ import * as cookieNames from "./containers/auth/auth-cookies";
 import { connect } from "react-redux";
 import * as actions from "./actions";
 import * as status from "./reducers/status";
-
+import HomeComponent from './components/home-component';
 class App extends Component {
   render() {
     console.log(this.props.user.status);
@@ -23,7 +23,7 @@ class App extends Component {
             path="/:user"
             component={UserContainer}
           />
-          <Route path="/" exact component={AuthContainer} />
+          <Route path="/" component={HomeComponent} />
         </Switch>
       </BrowserRouter>
     );

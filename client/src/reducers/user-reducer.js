@@ -32,9 +32,10 @@ export const userReducer = (state = initialState, action) => {
         statusMsg: ""
       };
     case actions.LOGOUT_USER_SUCCESS:
+      console.log(action.payload);
       return {
         value: action.payload,
-        status: status.SUCCESS,
+        status: status.LOGOUT,
         statusMsg: ""
       };
     case actions.LOGOUT_USER_FAILURE:
