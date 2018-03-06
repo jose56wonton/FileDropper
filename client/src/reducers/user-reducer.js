@@ -1,5 +1,6 @@
-import * as actions from "../actions/types";
-import * as status from "./status";
+import * as actions from "../constants/action-type-constants";
+import * as status from "../constants/state-status-constants";
+
 
 const initialState = {
   status: status.LOGOUT,

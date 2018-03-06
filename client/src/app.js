@@ -7,10 +7,10 @@ import HomeContainer from './containers/home-container';
 
 import { firebaseAuth } from "./helpers/fire";
 import Cookies from "universal-cookie";
-import * as cookieNames from "./containers/auth/auth-cookies";
+import * as cookieNames from "./constants/cookie-constants";
 import { connect } from "react-redux";
-import * as actions from "./actions";
-import * as status from "./reducers/status";
+import * as actions from "./constants/action-type-constants";
+import * as status from "./constants/state-status-constants";
 class App extends Component {
   render() {
     return (

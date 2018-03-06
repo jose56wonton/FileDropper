@@ -4,7 +4,7 @@ import * as actions from "../../actions";
 import { connect } from "react-redux";
 import SignInComponent from "../../components/auth/signin-component";
 import Cookies from "universal-cookie";
-import * as cookieNames from "./auth-cookies";
+import * as cookieNames from "../../constants/cookie-constants";
 import { withRouter } from "react-router";
 class SignInContainer extends Component {
   constructor(props) {

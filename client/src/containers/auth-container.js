@@ -3,7 +3,7 @@ import AuthComponent from "../components/auth-component";
 import * as actions from "../actions";
 import { connect } from "react-redux";
 import Cookies from "universal-cookie";
-import * as cookieNames from "./auth/auth-cookies";
+import * as cookieNames from "../constants/cookie-constants";
 import { withRouter } from "react-router";
 import NavContainer from "./general/nav-container";
 class AuthContainer extends Component {

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import SignUpComponent from "../../components/auth/signup-component";
 import { withRouter } from "react-router";
 import Cookies from "universal-cookie";
-import * as cookieNames from "./auth-cookies";
+import * as cookieNames from "../../constants/cookie-constants";
 class SignUpContainer extends Component {
   constructor(props) {
     super(props);

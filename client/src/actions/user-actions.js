@@ -1,4 +1,4 @@
-import * as types from "./types";
+import * as types from "../constants/action-type-constants";
 import * as auth from "../helpers/auth";
 
 export const login = (email, password) => {
