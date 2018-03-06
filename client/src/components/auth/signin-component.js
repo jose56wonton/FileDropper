@@ -3,7 +3,6 @@ import React from "react";
 export const SignInComponent = props => {
   return (
     <div>
-      <h5>Sign In</h5>
       <form onSubmit={props.handleSubmit}>
         <div className="ui one column middle aligned very relaxed stackable grid">
           <div className="column">
@@ -35,8 +34,7 @@ export const SignInComponent = props => {
               </div>
               <input className="ui blue submit button" type="submit" value="Submit" />
             </div>
-          </div>
-          
+          </div>          
           {props.status &&
             <div>
               <div>
