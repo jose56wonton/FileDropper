@@ -2,12 +2,18 @@ import React, { Component } from "react";
 import * as actions from "../../actions";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import NavComponent from '../../components/general/nav-component';
 class NavContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      formType: true
-    };
+    
+   
+    
+    
+    // nav states are 
+    // 0 - home 
+    // 1 - auth
+    // 2 - user
   }
   home = () => {
     this.props.history.push(
@@ -18,13 +24,12 @@ class NavContainer extends Component {
     this.props.logout();
     this.props.history.push(
       `/auth`
-    );
-    
+    );    
   };
-  login = () => {
+  login = () => {  
     this.props.history.push(
       `/auth`
-    );
+    );    
   };
   user = () => {
     this.props.history.push(
@@ -32,31 +37,16 @@ class NavContainer extends Component {
     );
   };
   render() {
-    const auth = this.props.user.value;
-    let right = null;
-    if (this.props.user.value && this.props.user.value.email) {
-      right = (
-        <div className="right menu">
-          <a onClick={this.logout} className="ui item">Logout</a>
-          <a onClick={this.user} className="item">
-            <i className="user icon" />
-          </a>
-        </div>
-      );
-    } else {
-      right = (
-        <div className="right menu">
-          <a onClick={this.login} className="ui item">Login</a>}
-        </div>
-      );
-    }
+    const authed = this.props.user.value && this.props.user.value.email;
     return (
-      <div className="container">
-        <div className="ui secondary pointing menu">
-          <a onClick={this.home} className="item">Home</a>
-          {right}
-        </div>
-      </div>
+      <NavComponent 
+      authed={authed}
+      home={this.home}
+      login={this.login}
+      logout={this.logout}
+      user={this.user}
+      currentPath={this.props.location.pathname}
+      /> 
     );
   }
 }
