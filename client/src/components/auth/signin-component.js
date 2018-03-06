@@ -20,7 +20,8 @@ export const SignInComponent = props => {
           placeholder="*******"
           onChange={props.handlePasswordChange}
           value={props.password}
-        />
+        />        
+        <input className="button-primary" type="submit" value="Submit" />
         {props.status &&
           <div>
             <div>
@@ -34,7 +35,6 @@ export const SignInComponent = props => {
               </button>
             </div>
           </div>}
-        <input className="button-primary" type="submit" value="Submit" />
       </form>
     </div>
   );

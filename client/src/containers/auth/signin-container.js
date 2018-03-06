@@ -3,8 +3,8 @@ import { login, resetPassword } from "../../helpers/auth";
 import * as actions from "../../actions";
 import { connect } from "react-redux";
 import SignInComponent from "../../components/auth/signin-component";
-import Cookies from 'universal-cookie';
-import * as cookieNames from './auth-cookies';
+import Cookies from "universal-cookie";
+import * as cookieNames from "./auth-cookies";
 import { withRouter } from "react-router";
 class SignInContainer extends Component {
   constructor(props) {
@@ -16,16 +16,25 @@ class SignInContainer extends Component {
   }
   handleSubmit = e => {
     e.preventDefault();
-    this.props.login(this.state.email, this.state.password).then(()=>{      
-      this.props.history.push(`/${this.props.user.value.email.split("@")[0]}`);
-    }).catch(()=>{
-      console.log("asdfasf");
-    });
-    let dateOfExpiration = new Date();
-    dateOfExpiration.setDate((dateOfExpiration.getDate() + 7));
-    const cookies = new Cookies();
-    cookies.set(cookieNames.EMAIL,this.state.email,{expires: dateOfExpiration });
-    cookies.set(cookieNames.PASSWORD,this.state.password,{expires: dateOfExpiration });
+    this.props
+      .login(this.state.email, this.state.password)
+      .then(() => {
+        this.props.history.push(
+          `/${this.props.user.value.email.split("@")[0]}`
+        );
+        let dateOfExpiration = new Date();
+        dateOfExpiration.setDate(dateOfExpiration.getDate() + 7);
+        const cookies = new Cookies();
+        cookies.set(cookieNames.EMAIL, this.state.email, {
+          expires: dateOfExpiration
+        });
+        cookies.set(cookieNames.PASSWORD, this.state.password, {
+          expires: dateOfExpiration
+        });
+      })
+      .catch(() => {
+        console.log("asdfasf");
+      });
   };
   reset = () => {
     this.props.reset(this.state.email);
