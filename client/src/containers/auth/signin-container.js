@@ -33,7 +33,7 @@ class SignInContainer extends Component {
         });
       })
       .catch(() => {
-        console.log("asdfasf");
+       
       });
   };
   reset = () => {

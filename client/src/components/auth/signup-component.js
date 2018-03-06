@@ -3,39 +3,60 @@ import React from "react";
 export const SignUpComponent = props => {
   return (
     <div>
-      <h5>Sign Up</h5>
-      <form
-        onSubmit={props.handleSubmit}
-      >
-        <label>Email</label>
-        <input
-          className="u-full-width"
-          type="email"
-          placeholder="asdf@gmail.com"
-          onChange={props.handleEmailChange}
-          value={props.email}
-        />
-        <label>Password</label>
-        <input
-          className="u-full-width"
-          type="password"
-          placeholder="*******"
-          onChange={props.handlePassword1Change}
-          value={props.password1}
-        />
-        <label>Password (Repeat)</label>
-        <input
-          className="u-full-width"
-          type="password"
-          placeholder="*******"
-          onChange={props.handlePassword2Change}
-          value={props.password2}
-        />
-        {props.status &&
-          <div>
-            <p>{props.status}</p>
-          </div>}
-        <input className="button-primary" type="submit" value="Submit" />
+      <form onSubmit={props.handleSubmit}>
+        <div className="ui one column middle aligned very relaxed stackable grid">
+          <div className="column">
+            <div className="ui form">
+              <div className="field">
+                <label>Username</label>
+                <div className="ui left icon input">
+                  <input
+                    type="email"
+                    placeholder="asdf@gmail.com"
+                    onChange={props.handleEmailChange}
+                    value={props.email}
+                  />
+                  <i className="user icon" />
+                </div>
+              </div>
+              <div className="field">
+                <label>Password</label>
+                <div className="ui left icon input">
+                  <input
+                    type="password"
+                    placeholder="*******"
+                    onChange={props.handlePassword1Change}
+                    value={props.password1}
+                  />
+                  <i className="lock icon" />
+                </div>
+              </div>
+              <div className="field">
+                <label>Password (Repeat)</label>
+                <div className="ui left icon input">
+                  <input
+                    type="password"
+                    placeholder="*******"
+                    onChange={props.handlePassword2Change}
+                    value={props.password2}
+                  />
+                  <i className="lock icon" />
+                </div>
+              </div>
+              <input
+                className="ui blue submit button"
+                type="submit"
+                value="Submit"
+              />
+              {props.status &&
+                <div>
+                  <p>
+                    {props.status}
+                  </p>
+                </div>}
+            </div>
+          </div>
+        </div>
       </form>
     </div>
   );

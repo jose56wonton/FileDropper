@@ -32,6 +32,9 @@ class SignUpContainer extends Component {
         cookies.set(cookieNames.PASSWORD, this.state.password1, {
           expires: dateOfExpiration
         });
+      })
+      .catch(()=>{
+        
       });
   };
   changeEmail = e => {
