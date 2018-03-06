@@ -3,6 +3,7 @@ import { Route, BrowserRouter, Redirect, Switch } from "react-router-dom";
 
 import AuthContainer from "./containers/auth-container";
 import UserContainer from "./containers/user-container";
+import HomeContainer from './containers/home-container';
 
 import { firebaseAuth } from "./helpers/fire";
 import Cookies from "universal-cookie";
@@ -10,10 +11,8 @@ import * as cookieNames from "./containers/auth/auth-cookies";
 import { connect } from "react-redux";
 import * as actions from "./actions";
 import * as status from "./reducers/status";
-import HomeComponent from './components/home-component';
 class App extends Component {
   render() {
-    console.log(this.props.user.status);
     return (
       <BrowserRouter>
         <Switch>
@@ -23,7 +22,7 @@ class App extends Component {
             path="/:user"
             component={UserContainer}
           />
-          <Route path="/" component={HomeComponent} />
+          <Route path="/" component={HomeContainer} />
         </Switch>
       </BrowserRouter>
     );
