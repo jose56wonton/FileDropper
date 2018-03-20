@@ -1,14 +1,18 @@
-import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import NavContainer from './general/nav-container';
+import NavContainer from "./general/nav-container";
 
 class UserContainer extends Component {
   render() {
     return (
       <div>
-      <NavContainer />
-        wtf
+        <NavContainer />
+        <div className="ui secondary vertical pointing menu">
+          <a className="active item">Home</a>
+          <a className="item">Messages</a>
+          <a className="item">Friends</a>
+        </div>
       </div>
     );
   }
@@ -20,4 +24,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps,null)(UserContainer);
+export default connect(mapStateToProps, null)(UserContainer);
