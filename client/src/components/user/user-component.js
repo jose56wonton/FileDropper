@@ -1,11 +1,9 @@
 import React from "react";
-
+import SessionCreatorContainer from '../../containers/session/session-creator-container';
 export const UserComponent = props => {
   return (
-    <div className="ui secondary vertical pointing menu">
-      <a className="active item">Home</a>
-      <a className="item">Messages</a>
-      <a className="item">Friends</a>
+    <div className="ui container">
+      <SessionCreatorContainer />
     </div>
   );
 };
