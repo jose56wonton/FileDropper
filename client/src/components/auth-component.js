@@ -2,15 +2,27 @@ import React from "react";
 import SignInContainer from "../containers/auth/signin-container";
 import SignUpContainer from "../containers/auth/signup-container";
 export const AuthComponent = props => {
-  
   return (
-    <div className="ui card">
-      <div className="ui secondary pointing menu">
-        <a className={`item ${props.formType ? "active" : null}`} onClick={props.setFormSignIn}>SignIn</a>
-        <a className={`item ${props.formType ? null : "active"}`} onClick={props.setFormSignUp}>SignUp</a>
-      </div>
-      <div className="content">
-       {props.formType ? <SignInContainer /> : <SignUpContainer />}
+    <div className="ui two column centered grid">
+    
+      <div className="ui card">
+        <div className="ui secondary pointing menu">
+          <a
+            className={`item ${props.formType ? "active" : null}`}
+            onClick={props.setFormSignIn}
+          >
+            SignIn
+          </a>
+          <a
+            className={`item ${props.formType ? null : "active"}`}
+            onClick={props.setFormSignUp}
+          >
+            SignUp
+          </a>
+        </div>
+        <div className="content">
+          {props.formType ? <SignInContainer /> : <SignUpContainer />}
+        </div>
       </div>
     </div>
   );
@@ -28,7 +40,7 @@ export default AuthComponent;
 //             <button className="ui positive button" onClick={props.setFormSignUp}>SignUp</button>
 //           </div>
 
-//           
+//
 //         </div>
 //       </div>
 //     </div>

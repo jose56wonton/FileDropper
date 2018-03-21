@@ -1,18 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import UserComponent from '../components/user/user-component';
 import NavContainer from "./general/nav-container";
 
 class UserContainer extends Component {
   render() {
     return (
-      <div>
+      <div >
         <NavContainer />
-        <div className="ui secondary vertical pointing menu">
-          <a className="active item">Home</a>
-          <a className="item">Messages</a>
-          <a className="item">Friends</a>
-        </div>
+        <UserComponent />
       </div>
     );
   }
